@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">First Task</string>
+    <string name="user_name">User Name</string>
+    <string name="log_in">Log In</string>
+    <string name="stay_signed_in">Stay Signed In</string>
+    <string name="password">Password</string>
+    <string name="no_value">There is no value</string>
+</resources>

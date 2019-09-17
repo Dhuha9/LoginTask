@@ -49,6 +49,7 @@ public class LoginFragment extends DialogFragment {
         passwordInputLayout = view.findViewById(R.id.passwordInputLayout);
 
         btnLogin.setOnClickListener(LoginListener);
+
         saveModel = new SaveModel(this.getContext());
 
         userPassword.addTextChangedListener(passwordWatcher);
@@ -84,12 +85,14 @@ public class LoginFragment extends DialogFragment {
         public void onClick(View view) {
             String usernameValue = username.getText().toString();
             String passwordValue = userPassword.getText().toString();
+            boolean isChecked=cbStaySignedIn.isChecked();
 
             if (usernameValue.equals("admin") && passwordValue.equals("12345678")) {
                 ((MainActivity) getActivity()).tvUsername.setText(username.getText().toString());
-                if (cbStaySignedIn.isChecked()) {
+                if (isChecked) {
 
-                    saveModel.SavedUsername(username.getText().toString(), cbStaySignedIn.isChecked());
+                    saveModel.saveUserName(username.getText().toString());
+                    saveModel.saveSignedInStatus(isChecked);
                     dismiss();
 
                 } else {

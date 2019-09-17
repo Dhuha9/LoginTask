@@ -23,18 +23,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void showDialogFragment() {
-        if ((saveModel.getIsStaySignedIn())) {
-            tvUsername.setText(saveModel.getUsername());
+        if ((saveModel.isSignedIn())) {
+            setTextView();
         } else {
             LoginFragment loginFragment = new LoginFragment();
             loginFragment.show(getSupportFragmentManager(), null);
         }
+    }
 
-        if (saveModel.getUsername().isEmpty()) {
+    public void setTextView() {
+        if (saveModel.getUserName().isEmpty()) {
             tvUsername.setText(R.string.no_value);
+        } else {
+            tvUsername.setText(saveModel.getUserName());
         }
-
-
     }
 
 

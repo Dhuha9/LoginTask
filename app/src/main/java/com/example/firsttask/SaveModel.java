@@ -1,28 +1,36 @@
 package com.example.firsttask;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 class SaveModel {
     private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
+    @SuppressLint("CommitPrefEdits")
     SaveModel(Context context) {
         preferences = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+    }
+
+    public void saveUserName(String userName) {
+        editor.putString("userName", userName);
+        editor.apply();
 
     }
 
-    public boolean SavedUsername(String username, boolean isStaySignedIn) {
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("username", username);
-        editor.putBoolean("isStaySignedIn", isStaySignedIn);
-        return editor.commit();
+    public void saveSignedInStatus(boolean isSignedIn) {
+        editor.putBoolean("isSignedIn", isSignedIn);
+        editor.apply();
+
     }
 
-    public String getUsername() {
-        return preferences.getString("username", "");
+    public String getUserName() {
+        return preferences.getString("userName", "");
     }
 
-    public boolean getIsStaySignedIn() {
-        return preferences.getBoolean("isStaySignedIn", false);
+    public boolean isSignedIn() {
+        return preferences.getBoolean("isSignedIn", false);
     }
 }
